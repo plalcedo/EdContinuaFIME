@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Quicksand&family=Rubik&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Quicksand', sans-serif;
+}
+
+
+/* Etiquetas */
+
+h1 {
+    font-family: 'Rubik', sans-serif;
+    text-align: center;
+    margin-top: 10px;
+}
+
+label {
+    margin-top: 10px;
+}
+
+
+/* Clases */
+
+.wrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.formulario {
+    width: 40%;
+    height: 100vh;
+    background-color: #e3e3e3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagen {
+    width: 60%;
+    height: 100vh;
+    background-image: url(../img/fimeEdf.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.box-formulario {
+    width: 80%;
+    background-color: whitesmoke;
+    border-radius: 20px;
+}
+
+.box-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.box-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.btnVerdes {
+    padding: 10px 20px;
+    border: transparent;
+    background-color: #4b9b51;
+    color: white;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+.btnVerdes:hover {
+    background-color: #125e19;
+    transition: 0.5s;
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.txtRojo {
+    color: red;
+}
+
+.txtGreen {
+    color: green;
+}
+
+.border-invalid {
+    border: 2px red solid;
+}
+
+
+/* Ids */
+
+#formLogIn {
+    width: 60%;
+    margin: auto;
+    padding: 20px;
+}
