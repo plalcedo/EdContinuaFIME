@@ -31,11 +31,6 @@ h2 {
     padding: 20px 10px;
 }
 
-p {
-    padding: 10px;
-    text-align: justify;
-}
-
 body {
     background-color: #e3e3e3;
 }
@@ -48,6 +43,16 @@ footer {
     bottom: 0;
     padding: 10px;
     margin-top: 50px;
+}
+
+form {
+    width: 50%;
+    justify-content: center;
+    margin: auto;
+}
+
+label {
+    margin-top: 10px;
 }
 
 
@@ -70,7 +75,7 @@ footer {
 }
 
 .btnVerdes {
-    padding: 10px 10px;
+    padding: 10px 20px;
     border: transparent;
     background-color: #4b9b51;
     color: white;
@@ -80,6 +85,67 @@ footer {
 .btnVerdes:hover {
     background-color: #125e19;
     transition: 0.5s;
+}
+
+.listasFooter ul {
+    list-style: none;
+}
+
+.listasFooter p {
+    color: white;
+    padding: 0;
+    text-align: center;
+}
+
+.box-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.box-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.boxes {
+    width: 90%;
+    margin: auto;
+    background-color: whitesmoke;
+    border-radius: 20px;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.align-center {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.aceptas {
+    margin-right: 10px;
+}
+
+.border-invalid {
+    border: 2px red solid;
+}
+
+.txtRojo {
+    color: red;
+    padding: 0;
+    margin: 0;
+}
+
+.txtGreen {
+    margin-top: 10px;
+    color: green;
+}
+
+.check {
+    width: 200px;
+    height: auto;
+    margin: auto;
 }
 
 
@@ -98,7 +164,7 @@ footer {
     margin-right: 10px;
 }
 
-#barraNav ul li a:hover {
+#barraNav a:hover {
     background-color: white;
     color: #4b9b51;
     border-radius: 50px;
@@ -109,23 +175,19 @@ footer {
     padding: 8px;
 }
 
+#barraNav i {
+    color: #4b9b51;
+}
+
 #mosaicoImag {
     display: flex;
     flex-direction: row;
     width: 100%;
 }
 
-#multimedia {
-    width: 90%;
-    margin: auto;
-    background-color: whitesmoke;
-    margin-top: 20px;
-    border: 2px solid #4b9b51;
-    border-radius: 20px;
-}
-
-#ofertas {
-    margin-top: 20px;
+#multimedia p {
+    padding: 10px;
+    text-align: justify;
 }
 
 #botones {
@@ -149,6 +211,53 @@ footer {
     transition: 0.5s;
 }
 
+#footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#redesSociales ul {
+    display: flex;
+    flex-direction: row;
+}
+
+#redesSociales li {
+    padding: 5px 10px;
+}
+
+#redesSociales i {
+    font-size: 2rem;
+    color: white;
+}
+
+#redesSociales i:hover {
+    color: black;
+    transition: 0.5s;
+}
+
+#about ul {
+    display: flex;
+    flex-direction: column;
+}
+
+#about li,
+i {
+    padding: 5px 10px;
+    color: white;
+}
+
+#formulario {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#formulario button {
+    margin-top: 10px;
+}
+
 
 /* Ajustes de pantalla */
 
@@ -159,4 +268,21 @@ footer {
     #barraNav ul li i {
         display: none;
     }
+}
+
+
+/* Quitar flechas en el input number */
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+nput[type=number] {
+    -moz-appearance: textfield;
 }

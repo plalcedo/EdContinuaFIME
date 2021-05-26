@@ -8,6 +8,7 @@
     <title>Educación Continua | Ofertas</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/stylesheet.css">
+    <link rel="icon" href="assets/img/osoFime.png">
 </head>
 
 <body>
@@ -20,7 +21,7 @@
                     <a href="#ofertas"><i class="fas fa-book"></i>Ofertas</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fas fa-user"></i>Aspirantes</a>
+                    <a href="#formulario"><i class="fas fa-user"></i>Registro</a>
                 </li>
                 <li>
                     <a href="#"><i class="fas fa-chalkboard-teacher"></i>Maestros</a>
@@ -30,7 +31,7 @@
     </header>
 
     <main>
-        <section id="multimedia">
+        <section id="multimedia" class="boxes">
             <h2>¿Estás listo para ampliar tus conocimientos?</h2>
             <div id="mosaicoImag">
                 <div><img src="assets/img/slide1.jpg" alt="" class="imgMosaico"></div>
@@ -43,17 +44,15 @@
             <p>La Educación Continua es un medio para crecer en todos los sentidos.</p>
         </section>
 
-        <section id="ofertas">
+        <section id="ofertas" class="boxes">
             <h2>Conoce nuestra oferta académica</h2>
             <div id="botones">
                 <button id="btnDiplomados">Diplomados</button>
                 <button id="btnEdCont">Educación técnica</button>
-                <button id="btnTodo">Todas las ofertas</button>
             </div>
             <table class="table table-striped tablaCursos">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Descripción</th>
                         <th scope="col">Registro</th>
@@ -61,33 +60,86 @@
                     </tr>
                 </thead>
                 <tbody id="tableBody">
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                    </tr>
+
                 </tbody>
             </table>
         </section>
     </main>
 
-    <footer>
-        <div id="redesSociales">
-            <p>Nuestras redes</p>
-            <ul>
-                <li>Facebook</li>
-                <li>Twitter</li>
-                <li>Instagram</li>
-            </ul>
+    <div id="formulario" class="boxes">
+        <h2>¡Regístrate aquí!</h2>
+        <form action="">
+            <div class="box-column">
+                <label for="">Nombre</label>
+                <input type="text" name="name" id="name" placeholder="Tu nombre">
+                <p class="txtRojo" id="nameText">No es un nombre válido</p>
+            </div>
+            <div class="box-column">
+                <label for="">Correo electrónico</label>
+                <input type="email" name="email" id="email" placeholder="correo@ejemplo.com">
+                <p class="txtRojo" id="emailText">No es un correo electrónico válido</p>
+            </div>
+            <div class="box-column">
+                <label for="">Edad</label>
+                <input type="number" name="age" id="age" placeholder="00">
+                <p class="txtRojo" id="ageText">Completa el campo</p>
+            </div>
+            <div class="box-column">
+                <label for="">Curso</label>
+                <select name="curso" id="curso">
+                    <option value="0">Selecciona un curso</option>
+                    <option value="1">Diplomado en Automatización</option>
+                    <option value="2">Diplomado en Base de Datos</option>
+                    <option value="3">Diplomado en Calidad Total y Mejora Continua</option>
+                    <option value="4">Diplomado en Herramientas de Diseño</option>
+                    <option value="5">Diplomado en ITIL</option>
+                    <option value="6">Técnico en automotriz y diésel</option>
+                    <option value="7">Técnico en control numérico computarizado</option>
+                    <option value="8">Técnico en paquetería computacional</option>
+                    <option value="9">Técnico en refrigeración y calefacción industrial</option>
+                    <option value="10">Técnico en desarrollador de software</option>
+                    <option value="11">Técnico industrial en electricidad y electrónica especializada</option>
+                </select>
+                <p class="txtRojo" id="cursoText">Debes seleccionar un curso</p>
+            </div>
+            <div class="box-column">
+                <label for="">Teléfono</label>
+                <input type="number" name="phone" id="phone" placeholder="81 0000 0000">
+                <p class="txtRojo" id="phoneText">No es un teléfono válido</p>
+            </div>
+            <div class="box-row">
+                <label for="" class="aceptas">¿Aceptas los términos y condiciones?</label>
+                <input type="checkbox" name="checkTyC" id="checkTyC">
+            </div>
+            <div class="align-center">
+                <button class="btnVerdes">Enviar información</button>
+                <p class="txtRojo" id="mensajeAlerta"></p>
+            </div>
+        </form>
+        <div class="align-center">
+            <img src="assets/img/check.png" alt="" class="check">
+            <p class="txtGreen" id="mensajeExitoso">¡Tu registro se ha realizado satisfactoriamente!</p>
+            <button class="btnVerdes" id="btnOtro">Hacer otro registro</button>
         </div>
-        <div id="about">
-            <p>Contacto</p>
-            <ul>
-                <li>Télefono</li>
-                <li>Correo</li>
-            </ul>
+    </div>
+
+    <footer>
+        <div id="footer">
+            <div id="redesSociales" class="listasFooter">
+                <p>Nuestras redes</p>
+                <ul>
+                    <li><i class="fab fa-facebook-f"></i></li>
+                    <li><i class="fab fa-twitter"></i></li>
+                    <li><i class="fab fa-instagram"></i></li>
+                </ul>
+            </div>
+            <div id="about" class="listasFooter">
+                <p>Contacto</p>
+                <ul>
+                    <li><i class="fas fa-phone"></i>81 0000 0000</li>
+                    <li><i class="fas fa-envelope"></i>educont@fime.uanl.mx</li>
+                </ul>
+            </div>
         </div>
     </footer>
 

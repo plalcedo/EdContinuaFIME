@@ -24,77 +24,349 @@ var diplomados = {
 
 // Catálogo de Educación Técnica
 var tecnicas = {
-    1: {
+    0: {
         nombre: "Técnico en automotriz y diésel",
         descripcion: "El alumno aprenderá sobre automotriz y diésel."
     },
-    2: {
+    1: {
         nombre: "Técnico en control numérico computarizado",
         descripcion: "El alumno aprenderá sobre control númerico computarizado."
     },
-    1: {
+    2: {
         nombre: "Técnico en paquetería computacional",
         descripcion: "El alumno aprenderá sobre paquetería computacional."
     },
-    1: {
+    3: {
         nombre: "Técnico en refrigeración y calefacción industrial",
         descripcion: "El alumno aprenderá sobre refrigeración y calefacción industrial."
     },
-    1: {
+    4: {
         nombre: "Técnico desarrollador de software",
         descripcion: "El alumno aprenderá sobre el desarrollo de software."
     },
-    1: {
+    5: {
         nombre: "Técnico industrial en electricidad y electrónica especializada",
         descripcion: "El alumno aprenderá sobre electricidad y electrónica especializada."
-    },
+    }
 }
 
 
-// Evento: Cargar los diplomados, ed técnica o todos
+// ---------------------------------------------------- PROGRAMACIÓN DE MOSTRAR LOS CURSOS ---------------------------------------------------- //
+
+
+var tableBody = document.getElementById("tableBody");
+$(".tablaCursos").hide();
 
 $("#btnDiplomados").click(() => {
-    var size = Object.keys(diplomados).length
+    $(".tablaCursos").show();
+    vaciarTabla();
+    cargarDiplomados();
+});
 
-    var tableBody = document.getElementById("tableBody");
-    for (var i = 0; i < size; i++) {
-
-        // Creamos los elementos necesarios para cada fila
-        var tr = document.createElement("tr");
-        var th = document.createElement("th");
-        var tdNombre = document.createElement("td");
-        var tdDescripcion = document.createElement("td");
-        var tdBtnRegistro = document.createElement("td");
-        var tdBtnVerMas = document.createElement("td");
-        var btnRegistro = document.createElement("button");
-        var btnVerMas = document.createElement("button");
-
-        // Establecemos clases y atributos
-        th.setAttribute(`scope`, "row");
-        btnRegistro.classList.add("btnVerdes");
-        btnVerMas.classList.add("btnVerdes");
-
-        // Ingresamos los botones en su respectivo campo
-        tdBtnRegistro.appendChild(btnRegistro);
-        tdBtnVerMas.appendChild(btnVerMas);
-
-        // Ingresamos información en su respectivo campo
-        tdNombre.innerHTML = diplomados[i].nombre;
-        tdDescripcion.innerHTML = diplomados[i].nombre;
-        th.innerHTML = (i + 1);
-        btnRegistro.innerHTML = "Registro";
-        btnVerMas.innerHTML = "Ver más";
+$("#btnEdCont").click(() => {
+    $(".tablaCursos").show();
+    vaciarTabla();
+    cargarEdCont();
+});
 
 
-        // Construimos la fila
-        tr.appendChild(th);
-        tr.appendChild(tdNombre);
-        tr.appendChild(tdDescripcion);
-        tr.appendChild(tdBtnRegistro);
-        tr.appendChild(tdBtnVerMas);
+function vaciarTabla() {
+    $("#tableBody tr").remove();
+}
+
+function cargarDiplomados() {
+
+    var tablaDiplomados = "";
+
+    for (const diplomado in diplomados) {
+        tablaDiplomados = `
+                            <tr>
+                                <td>${diplomados[diplomado].nombre}</td>
+                                <td>${diplomados[diplomado].descripcion}</td>
+                                <td><button class="btnVerdes" onclick="enviarCurso('${diplomados[diplomado].nombre}')">Registro</button></td>
+                                <td><button class="btnVerdes">Información</button></td>
+                            </tr>
+                        `;
+        tableBody.innerHTML += tablaDiplomados;
+    }
+
+}
 
 
-        // Agregamos la fila a la tabla
-        tableBody.appendChild(tr);
+function cargarEdCont() {
+
+    var tablaTecnicas = "";
+
+    for (const tecnica in tecnicas) {
+        tablaTecnicas = `
+                            <tr>
+                                <td>${tecnicas[tecnica].nombre}</td>
+                                <td>${tecnicas[tecnica].descripcion}</td>
+                                <td><button class="btnVerdes" onclick="enviarCurso('${tecnicas[tecnica].nombre}')">Registro</button></td>
+                                <td><button class="btnVerdes">Información</button></td>
+                            </tr>
+                        `;
+        tableBody.innerHTML += tablaTecnicas;
+    }
+
+}
+
+
+function enviarCurso(curso) {
+    location.href = "#formulario";
+    console.log(curso);
+
+    switch (curso) {
+        case 'Diplomado en Automatización':
+            {
+                $("#curso").val(1);
+                break;
+            }
+        case 'Diplomado en Base de Datos':
+            {
+                $("#curso").val(2);
+                break;
+            }
+        case 'Diplomado en Calidad Total y Mejora Continua':
+            {
+                $("#curso").val(3);
+                break;
+            }
+        case 'Diplomado en Herramientas de Diseño':
+            {
+                $("#curso").val(4);
+                break;
+            }
+        case 'Diplomado en ITIL':
+            {
+                $("#curso").val(5);
+                break;
+            }
+        case 'Técnico en automotriz y diésel':
+            {
+                $("#curso").val(6);
+                break;
+            }
+        case 'Técnico en control numérico computarizado':
+            {
+                $("#curso").val(7);
+                break;
+            }
+        case 'Técnico en paquetería computacional':
+            {
+                $("#curso").val(8);
+                break;
+            }
+        case 'Técnico en refrigeración y calefacción industrial':
+            {
+                $("#curso").val(9);
+                break;
+            }
+        case 'Técnico desarrollador de software':
+            {
+                $("#curso").val(10);
+                break;
+            }
+        case 'Técnico industrial en electricidad y electrónica especializada':
+            {
+                $("#curso").val(11);
+                break;
+            }
+    }
+}
+
+// ---------------------------------------------------- PROGRAMACIÓN DE MOSTRAR LOS CURSOS ---------------------------------------------------- //
+
+
+// -------------------------------------------------- PROGRAMACIÓN DE FORMULARIO DE REGISTRO -------------------------------------------------- //
+
+$(".txtRojo").hide();
+$(".txtGreen").hide();
+$(".check").hide();
+$("#btnOtro").hide();
+
+
+var nameCorrect = false;
+var emailCorrect = false;
+var cursoCorrect = false;
+var phoneCorrect = false;
+var ageCorrect = false;
+
+// Evento del botón del formulario
+
+$("form").on("submit", (event) => {
+    event.preventDefault();
+
+
+    // Validaciones
+
+    // Validación de Términos y Condiciones
+    if ($("#checkTyC").is(":checked")) {
+        $("#mensajeAlerta").hide();
+        $("#mensajeAlerta").text("");
+
+        // Validación de campos
+        if (nameCorrect == true && emailCorrect == true && ageCorrect == true && phoneCorrect == true) {
+            $("#mensajeAlerta").hide();
+            $("#mensajeAlerta").text("");
+
+            // Validación de curso elegido
+            var data = $("form").serializeArray();
+            console.log(data);
+
+            if (data[3].value == "0") {
+                console.log("Debes elegir un curso");
+                $("#mensajeAlerta").show();
+                $("#mensajeExitoso").hide();
+                $("#mensajeAlerta").text("Debes elegir un curso");
+            } else {
+                // Todo bien, se registra
+                $("#mensajeAlerta").hide();
+                $("#mensajeAlerta").text("");
+                $("form").fadeOut();
+                setTimeout(() => {
+                    $("#mensajeExitoso").fadeIn();
+                    $(".check").fadeIn();
+                    $("#btnOtro").fadeIn();
+                }, 200);
+
+                $("#btnOtro").click(() => {
+                    $("#mensajeExitoso").fadeOut();
+                    $(".check").fadeOut();
+                    $("#btnOtro").fadeOut();
+                    $("form").fadeIn();
+                });
+            }
+
+        } else {
+            console.log("Revisa los campos");
+            $("#mensajeAlerta").show();
+            $("#mensajeExitoso").hide();
+            $("#mensajeAlerta").text("Revisa los campos");
+        }
+    } else {
+        console.log("Debes aceptar los términos y condiciones");
+        $("#mensajeAlerta").show();
+        $("#mensajeExitoso").hide();
+        $("#mensajeAlerta").text("Debes aceptar los términos y condiciones");
     }
 });
+
+// Validación de los campos
+
+$("#name").blur(() => {
+    var estado = checkName();
+    console.log(estado);
+    if (estado) {
+        $("#nameText").hide();
+        $("#name").removeClass("border-invalid");
+        nameCorrect = true;
+    } else {
+        $("#nameText").show();
+        $("#name").addClass("border-invalid");
+        nameCorrect = false;
+    }
+});
+$("#email").blur(() => {
+    var estado = checkEmail();
+    console.log(estado);
+    if (estado) {
+        $("#emailText").hide();
+        $("#email").removeClass("border-invalid");
+        emailCorrect = true;
+    } else {
+        $("#emailText").show();
+        $("#email").addClass("border-invalid");
+        emailCorrect = false;
+    }
+});
+$("#age").blur(() => {
+    var estado = checkAge();
+    console.log(estado);
+    if (estado) {
+        $("#ageText").hide();
+        $("#age").removeClass("border-invalid");
+        ageCorrect = true;
+    } else {
+        $("#ageText").show();
+        $("#age").addClass("border-invalid");
+        ageCorrect = false;
+    }
+});
+$("#phone").blur(() => {
+    var estado = checkPhone();
+    console.log(estado);
+    if (estado) {
+        $("#phoneText").hide();
+        $("#phone").removeClass("border-invalid");
+        phoneCorrect = true;
+    } else {
+        $("#phoneText").show();
+        $("#phone").addClass("border-invalid");
+        phoneCorrect = false;
+    }
+});
+
+function checkName() {
+    var pattern = /^[a-zA-Z ]*$/;
+    var inputName = $("#name").val();
+    var estado = true;
+
+    if (pattern.test(inputName) && inputName !== "") {
+        console.log("Nombre válido");
+        estado = true;
+    } else {
+        console.log("Nombre inválido");
+        estado = false;
+    }
+
+    return estado;
+}
+
+function checkEmail() {
+    var pattern = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/;
+    var inputEmail = $("#email").val();
+    var estado = true;
+
+    if (pattern.test(inputEmail) && inputEmail !== "") {
+        console.log("Email válido");
+        estado = true;
+    } else {
+        console.log("Email inválido");
+        estado = false;
+    }
+
+    return estado;
+}
+
+function checkPhone() {
+    var pattern = /^[0-9]*$/;
+    var inputPhone = $("#phone").val();
+    var estado = true;
+
+    if (pattern.test(inputPhone) && inputPhone !== "") {
+        console.log("Teléfono válido");
+        estado = true;
+    } else {
+        console.log("Teléfono inválido");
+        estado = false;
+    }
+
+    return estado;
+}
+
+function checkAge() {
+    var pattern = /^[0-9]*$/;
+    var inputAge = $("#age").val();
+    var estado = true;
+
+    if (pattern.test(inputAge) && inputAge !== "") {
+        console.log("Edad válida");
+        estado = true;
+    } else {
+        console.log("Edad inválida");
+        estado = false;
+    }
+
+    return estado;
+}
