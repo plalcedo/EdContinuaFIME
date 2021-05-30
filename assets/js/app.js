@@ -192,9 +192,12 @@ var cursoCorrect = false;
 var phoneCorrect = false;
 var ageCorrect = false;
 
+// Creamos la referencia a la base de datos
+const db = firebase.firestore();
+
 // Evento del botón del formulario
 
-$("form").on("submit", (event) => {
+$("form").on("submit", async(event) => {
     event.preventDefault();
 
 
@@ -220,10 +223,27 @@ $("form").on("submit", (event) => {
                 $("#mensajeExitoso").hide();
                 $("#mensajeAlerta").text("Debes elegir un curso");
             } else {
-                // Todo bien, se registra
+                // REGISTRAMOS EN LA BASE DE DATOS
+
+                const name = $("#name").val();
+                const email = $("#email").val();
+                const age = $("#age").val();
+                const curso = $("#curso").val();
+                const phone = $("#phone").val();
+
+                db.collection('alumnos').doc().set({
+                    name,
+                    email,
+                    age,
+                    curso,
+                    phone
+                });
+
+                // Se muestra el mensaje de éxito
                 $("#mensajeAlerta").hide();
                 $("#mensajeAlerta").text("");
                 $("form").fadeOut();
+
                 setTimeout(() => {
                     $("#mensajeExitoso").fadeIn();
                     $(".check").fadeIn();
@@ -234,6 +254,7 @@ $("form").on("submit", (event) => {
                     $("#mensajeExitoso").fadeOut();
                     $(".check").fadeOut();
                     $("#btnOtro").fadeOut();
+                    $("form").trigger("reset");
                     $("form").fadeIn();
                 });
             }
@@ -256,7 +277,6 @@ $("form").on("submit", (event) => {
 
 $("#name").blur(() => {
     var estado = checkName();
-    console.log(estado);
     if (estado) {
         $("#nameText").hide();
         $("#name").removeClass("border-invalid");
@@ -269,7 +289,6 @@ $("#name").blur(() => {
 });
 $("#email").blur(() => {
     var estado = checkEmail();
-    console.log(estado);
     if (estado) {
         $("#emailText").hide();
         $("#email").removeClass("border-invalid");
@@ -282,7 +301,6 @@ $("#email").blur(() => {
 });
 $("#age").blur(() => {
     var estado = checkAge();
-    console.log(estado);
     if (estado) {
         $("#ageText").hide();
         $("#age").removeClass("border-invalid");
@@ -295,7 +313,6 @@ $("#age").blur(() => {
 });
 $("#phone").blur(() => {
     var estado = checkPhone();
-    console.log(estado);
     if (estado) {
         $("#phoneText").hide();
         $("#phone").removeClass("border-invalid");
@@ -308,15 +325,13 @@ $("#phone").blur(() => {
 });
 
 function checkName() {
-    var pattern = /^[a-zA-Z ]*$/;
+    var pattern = /^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/g;
     var inputName = $("#name").val();
     var estado = true;
 
     if (pattern.test(inputName) && inputName !== "") {
-        console.log("Nombre válido");
         estado = true;
     } else {
-        console.log("Nombre inválido");
         estado = false;
     }
 
@@ -329,10 +344,8 @@ function checkEmail() {
     var estado = true;
 
     if (pattern.test(inputEmail) && inputEmail !== "") {
-        console.log("Email válido");
         estado = true;
     } else {
-        console.log("Email inválido");
         estado = false;
     }
 
@@ -345,10 +358,8 @@ function checkPhone() {
     var estado = true;
 
     if (pattern.test(inputPhone) && inputPhone !== "") {
-        console.log("Teléfono válido");
         estado = true;
     } else {
-        console.log("Teléfono inválido");
         estado = false;
     }
 
@@ -361,10 +372,8 @@ function checkAge() {
     var estado = true;
 
     if (pattern.test(inputAge) && inputAge !== "") {
-        console.log("Edad válida");
         estado = true;
     } else {
-        console.log("Edad inválida");
         estado = false;
     }
 

@@ -95,6 +95,20 @@ label {
     border: 2px red solid;
 }
 
+.btnAlumnos {
+    position: absolute;
+    bottom: 3%;
+    left: 3%;
+}
+
+.btnAlumnos a {
+    text-decoration: none;
+}
+
+.btnAlumnos a:hover {
+    color: white;
+}
+
 
 /* Ids */
 
