@@ -25,7 +25,7 @@
 
                         <label for="">Contraseña</label>
                         <input type="password" id="password" name="password">
-                        <p class="txtRojo" id="passwordText">Completa el campo</p>
+                        <p class="txtRojo" id="passwordText">Formato de contraseña no válido</p>
 
                     </div>
                     <div class="btn">
@@ -41,6 +41,29 @@
         </div>
     </div>
 
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-auth.js"></script>
+
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyD2pGPMPTUwm07HT9jaYEx6NtQn3fPpgm4",
+            authDomain: "edcontinuafime.firebaseapp.com",
+            projectId: "edcontinuafime",
+            storageBucket: "edcontinuafime.appspot.com",
+            messagingSenderId: "329492897581",
+            appId: "1:329492897581:web:ab26c76f5992b4e4f07da4"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js "></script>
     <script src="assets/js/login.js"></script>

@@ -2,34 +2,38 @@ $(".txtRojo").hide();
 var emailCorrect = false;
 var passwordCorrect = false;
 
-$("form").on("submit", (event) => {
+$("#formLogIn").on("submit", (event) => {
     event.preventDefault();
 
     if (emailCorrect == true && passwordCorrect == true) {
+        $("#mensajeError").fadeOut();
+
 
         data = $("form").serializeArray();
         console.log(data);
 
-        // SIMULACIÓN DE INICIO DE SESIÓN 
-        // FALTA REALIZAR LA CONEXIÓN A LA BD
+        const email = data[0].value;
+        const password = data[1].value;
 
-        if (data[0].value == "admin@fime.com" && data[1].value == "admin") {
-            $("#mensajeError").fadeOut();
-            location.href = "panel.html";
-        } else {
+        auth.signInWithEmailAndPassword(email, password).then(userCredential => {
+            location.href = "panel.html"
+        }).catch(error => {
+            var errorMessage = error.message;
+            $("#mensajeError").text(errorMessage);
             $("#mensajeError").fadeIn();
-        }
+        });
     } else {
+        $("#mensajeError").text("Revisa los campos");
         $("#mensajeError").fadeIn();
     }
-    // Validaciones
 
 });
 
 
+// Validaciones
 
 $("#email").blur(() => {
-    var estado = checkFields();
+    var estado = checkEmail();
     if (estado) {
         $("#emailText").hide();
         $("#email").removeClass("border-invalid");
@@ -42,7 +46,7 @@ $("#email").blur(() => {
 });
 
 $("#password").blur(() => {
-    var estado = checkFields();
+    var estado = checkPassword();
     if (estado) {
         $("#passwordText").hide();
         $("#password").removeClass("border-invalid");
@@ -54,16 +58,28 @@ $("#password").blur(() => {
     }
 });
 
-function checkFields() {
+function checkEmail() {
     var pattern = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/;
     var inputEmail = $("#email").val();
     var estado = true;
 
     if (pattern.test(inputEmail) && inputEmail !== "") {
-        console.log("Email válido");
         estado = true;
     } else {
-        console.log("Email inválido");
+        estado = false;
+    }
+
+    return estado;
+}
+
+function checkPassword() {
+    var pattern = /(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{8,}$/;
+    var inputPassword = $("#password").val();
+    var estado = true;
+
+    if (pattern.test(inputPassword) && inputPassword !== "") {
+        estado = true;
+    } else {
         estado = false;
     }
 

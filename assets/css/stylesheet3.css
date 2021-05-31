@@ -59,6 +59,22 @@ body {
     transition: 0.5s;
 }
 
+.text-justify {
+    text-align: justify;
+}
+
+.txtRojo {
+    color: red;
+}
+
+.border-invalid {
+    border: 2px red solid;
+}
+
+.txtVerde {
+    color: green;
+}
+
 
 /* Ids */
 
@@ -90,4 +106,14 @@ body {
 
 #barraNav i {
     color: #4b9b51;
+}
+
+.formColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+#formRegistro input {
+    padding: 10px;
+    margin-top: 5px;
 }
